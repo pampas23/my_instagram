@@ -1,0 +1,6 @@
+<h2><%= @pic.tittle %></h2>
+<p><%= @pic.description %></p>
+
+<%= link_to "Update", edit_pic_path,class: 'btn btn-primary' %>
+<%= link_to "Delete", pic_path, method: :delete, class: 'btn btn-danger' %>
+<%= link_to "Back", pics_path,class: 'btn btn-info' %>
