@@ -1,5 +1,6 @@
 class PicsController < ApplicationController
-	before_action :find_pic, :only=>[:show, :update, :edit, :destroy]
+	before_action :find_pic, :only=>[:show, :update, :edit, :destroy, :like]
+	before_action :authenticate_user!, except: [:index, :show]
 
 	def index
 		@pics = Pic.all.order("created_at DESC")
@@ -35,6 +36,11 @@ class PicsController < ApplicationController
 	def destroy
 		@pic.destroy
 		redirect_to pics_path
+	end
+
+	def like
+		@pic.like_by_user(current_user)
+		redirect_to @pic
 	end
 
 	private
